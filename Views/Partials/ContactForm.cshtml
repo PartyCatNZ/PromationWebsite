@@ -1,0 +1,29 @@
+﻿@model Promation.Website.Models.ContactFormViewModel
+
+@if(TempData["success"] == null)
+{
+    using (Html.BeginUmbracoForm<Promation.Website.Controllers.ContactFormSurfaceController>("HandleFormSubmit"))
+    { 
+        <div class="controls controls-row">
+            @Html.TextBoxFor(m => m.Name, new { @class="span3", placeholder = "Name" })
+            @Html.ValidationMessageFor(m => m.Name)
+
+            @Html.TextBoxFor(m => m.Email, new { @class = "span3", placeholder = "Email Address" })
+            @Html.ValidationMessageFor(m => m.Email)
+
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "span3", placeholder = "Phone Number" })
+        </div>
+        <div class="controls">
+            @Html.TextAreaFor(m => m.Message, new { @class = "span6", placeholder = "Your message" })
+            @Html.ValidationMessageFor(m => m.Message)
+        </div>
+
+        <div class="controls">
+            <button id="contact-submit" type="submit" class="btn btn-primary input-medium pull-right">Send</button>
+        </div>
+    }
+}
+else
+{   
+    <p>Thank you for your message</p>
+}
